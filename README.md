@@ -26,19 +26,19 @@ This uses [Gradle](http://gradle.org/) for dependency and build management, but 
 To build run:
 
 ```
-gradlew build
+./gradlew build
 ```
 
 To run the tests:
 
 ```
-gradlew test
+./gradlew test
 ```
 
 To build the documentation:
 
 ```
-gradlew javadoc
+./gradlew javadoc
 ```
 
 Then open `build/docs/javadoc/index.html`.
