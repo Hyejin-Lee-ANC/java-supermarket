@@ -23,15 +23,20 @@ public class Supermarket implements SupermarketInterface {
 
   /**
    * Checkout with a string of items, using the product map to build the purchase. 
+   * Anything that does not match is ignored without warning.
    *
    * @param items String of character codes for items purchased, for example "AABBCAB"
    * @return int The total cost of the string.
    */
   public int checkout(String items) {
     int total = 0;
+    
+    // ensure we have uppercase to match our map:
+    String uppercaseItems = items.toUpperCase();
+
     for (Map.Entry<String, AbstractProduct> entry : PRODUCT_MAP.entrySet()) {
       // count the number of times a product matches in the input string:
-      int count = StringUtils.countMatches(items, entry.getKey());
+      int count = StringUtils.countMatches(uppercaseItems, entry.getKey());
       total += entry.getValue().getTotalPrice(count);
     }
     return total;
