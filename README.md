@@ -35,7 +35,7 @@ To run the tests:
 gradlew test
 ```
 
-To build the documentation,
+To build the documentation:
 
 ```
 gradlew javadoc
