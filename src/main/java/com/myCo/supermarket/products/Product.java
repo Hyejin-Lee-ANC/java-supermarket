@@ -1,5 +1,5 @@
 /**
- * Defines helper methods and contracts for products carried in the Supermarket.
+ * Defines methods for products carried in the Supermarket.
  *
  * @author Andrew Ettinger
  */
