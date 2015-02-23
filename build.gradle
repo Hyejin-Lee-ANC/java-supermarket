@@ -1,0 +1,37 @@
+/*
+ * Gradle build file for java-supermarket
+ */
+
+apply plugin: 'java'
+
+version = '1.0'
+jar {
+  baseName = 'supermarket'
+  manifest {
+      attributes 'Implementation-Title': 'Supermarket Shopping Cart Example',
+                 'Implementation-Version': version
+  }
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.3.2'
+  testCompile 'junit:junit:4.11'
+}
+
+test {
+  // Show that tests are run in the command-line output
+  beforeTest { descriptor ->
+      logger.lifecycle("Running test: " + descriptor)
+  }
+  testLogging {
+    events 'started', 'passed', 'failed'
+  }
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '1.11'
+}
