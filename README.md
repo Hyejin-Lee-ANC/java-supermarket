@@ -35,4 +35,10 @@ To run the tests:
 gradlew test
 ```
 
+To build the documentation,
 
+```
+gradlew javadoc
+```
+
+Then open `build/docs/javadoc/index.html`.
