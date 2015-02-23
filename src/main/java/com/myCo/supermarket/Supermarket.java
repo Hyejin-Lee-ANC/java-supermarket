@@ -13,11 +13,17 @@ public class Supermarket implements SupermarketInterface {
   /**
    * Map our product classes to their inputs
    */
-  private static final Map<String, AbstractProduct> PRODUCT_MAP;
+  private static final Map<String, Product> PRODUCT_MAP;
   static {
-    PRODUCT_MAP = new HashMap<String, AbstractProduct>();
+    PRODUCT_MAP = new HashMap<String, Product>();
     PRODUCT_MAP.put(ProductA.INPUT_MATCH, new ProductA());
-    PRODUCT_MAP.put(ProductB.INPUT_MATCH, new ProductB());
+
+    // apply discounts for ProductB:
+    List discountList = new ArrayList<DiscountInterface>();
+    discountList.add(new BulkDiscount(5, 2));
+    Product productB = new ProductB(discountList);
+    PRODUCT_MAP.put(ProductB.INPUT_MATCH, productB);
+
     PRODUCT_MAP.put(ProductC.INPUT_MATCH, new ProductC());
   }
 
@@ -34,10 +40,12 @@ public class Supermarket implements SupermarketInterface {
     // ensure we have uppercase to match our map:
     String uppercaseItems = items.toUpperCase();
 
-    for (Map.Entry<String, AbstractProduct> entry : PRODUCT_MAP.entrySet()) {
+    for (Map.Entry<String, Product> entry : PRODUCT_MAP.entrySet()) {
       // count the number of times a product matches in the input string:
       int count = StringUtils.countMatches(uppercaseItems, entry.getKey());
-      total += entry.getValue().getTotalPrice(count);
+
+      Product product = entry.getValue();
+      total += product.getTotalPrice(count);
     }
     return total;
   }

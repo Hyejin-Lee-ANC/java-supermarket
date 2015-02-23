@@ -7,7 +7,7 @@
 
 package com.myCo.supermarket;
 
-public class ProductA extends AbstractProduct { 
+public class ProductA extends Product { 
   /**
    * Used to match the input for checkout.
    */
@@ -17,25 +17,23 @@ public class ProductA extends AbstractProduct {
    * Creates a new ProductA with the default cost of 20
    */
   public ProductA() {
-    this.setPrice(20);
+    super(20);
   }
 
   /**
-   * Creates a new Product with a new cost
-   *
-   * @param price Sets new cost of this product to int
+   * Creates a new ProductA with a different cost
+   * @param newCost The new cost to apply
    */
-  public ProductA(int price) {
-    this.setPrice(price);
+  public ProductA(int newCost) {
+    super(newCost);
   }
 
   /**
-   * Gets the total purchase cost for a quantity of products.
-   *
-   * @param numberOfProducts The number of products purchased.
-   * @return int The total cost with discounts.
+   * Creates a new ProductA with just one discount applied
+   * @param discounts The list of discounts to apply
    */
-  public int getTotalPrice(int numberOfProducts) {
-    return this.getPrice() * numberOfProducts;
+  public ProductA(DiscountInterface discount) {
+    super(20);
+    this.addDiscount(discount);
   }
 }

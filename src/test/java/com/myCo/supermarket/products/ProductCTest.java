@@ -16,6 +16,6 @@ public class ProductCTest {
 
   @Test public void testGetTotalPrice() {
     ProductC p = new ProductC();
-    assertEquals(p.getTotalPrice(4), 30*4);
+    assertEquals(30*4, p.getTotalPrice(4));
   }
 }
